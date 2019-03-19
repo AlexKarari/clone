@@ -5,7 +5,10 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    url('^$', views.index, name='homepage')
+    url('^$', views.index, name='homepage'),
+    url('^posted_tweet/', views.view_tweet, name='singleTweet'),
+    url('^users_tweets/', views.tweet_list, name='usersTweets'),
+
 ]
 
 if settings.DEBUG:
