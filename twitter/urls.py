@@ -15,8 +15,8 @@ from django.conf.urls.static import static
 #Class based views url
 urlpatterns = [
     url('^$', views.index, name='homepage'),
-    url('^posted_tweet/', views.TweetDetailView, name='singleTweet'),
-    url('^users_tweets/', views.TweetListView, name='usersTweets'),
+    url(r'^(?P<pk>\d+)/$', views.TweetDetailView.as_view(), name='singleTweet'),
+    url('^users_tweets/', views.TweetListView.as_view(), name='usersTweets'),
 
 ]
 

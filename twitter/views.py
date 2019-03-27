@@ -35,8 +35,11 @@ class TweetDetailView(DetailView):
     template_name = "all/individual_tweet.html."
     queryset = Tweet.objects.all()
     
-    def get_object(self, tweet_id):
-        return Tweet.objects.get(id=tweet_id)
+    def get_object(self):
+        # print = (self.kwargs)
+        pk = self.kwargs.get("pk")
+        print = pk
+        return Tweet.objects.get(id=pk) 
 
 class TweetListView(ListView):
     template_name = 'all/tweet_list.html'
