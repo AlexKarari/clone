@@ -17,6 +17,8 @@ urlpatterns = [
     url('^$', views.index, name='homepage'),
     url(r'^(?P<pk>\d+)/$', views.TweetDetailView.as_view(), name='singleTweet'),
     url('^users_tweets/', views.TweetListView.as_view(), name='usersTweets'),
+    url('^create_tweet/', views.TweetCreateView.as_view(), name='create'),
+    
 
 ]
 
