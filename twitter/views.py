@@ -2,7 +2,8 @@ from django.shortcuts import render
 from .models import Tweet
 from .forms import TweetForm
 from .mixins import FormUserNeededMixin
-from django.views.generic import DetailView, ListView, CreateView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -12,7 +13,9 @@ def index (request):
 
 # C.R.U.D (Create, Retrieve, Update, Delete. List & Search also apply here) tweets
 
-# _____________________Funtion based views below_____________________________
+# ===================================================================================
+#                           Funtion based views below
+# ===================================================================================
 # Function below RETREIEVES a tweet with a function based view
 # def view_tweet(request, tweet_id):
 #     tweet = Tweet.objects.get(id=tweet_id) # Get tweet from Database
@@ -41,11 +44,13 @@ def index (request):
 #         }
 #         return render(request, 'all/index.html', context)
 
+# ===================================================================================
+#                               Class based views below
+# ===================================================================================
 
-# ___________________________Class based views below________________________________
 # C.R.U.D (Create, Retrieve, Update, Delete. List & Search also apply here) tweets
-#class based view to retrieve a tweet 
- 
+
+# class based view to retrieve a tweet 
 class TweetDetailView(DetailView):
     template_name = "all/individual_tweet.html"
     queryset = Tweet.objects.all()
@@ -56,13 +61,24 @@ class TweetDetailView(DetailView):
         print = (pk)
         return Tweet.objects.get(id=pk) 
 
+# class based view to display all user tweets
 class TweetListView(ListView):
     template_name = 'all/tweet_list.html'
     queryset = Tweet.objects.all()
 
-
+# class based view to allow a user create a tweet through a form
 class TweetCreateView(FormUserNeededMixin, CreateView):
     template_name = 'all/create_tweet.html'
     form_class = TweetForm
     success_url = "/create_tweet/"
     
+# class based view to update a tweet
+class TweetUpdateView(UpdateView):
+    queryset = Tweet.objects.all()
+    form_class = TweetForm
+    template_name = 'all/update_tweet.html'
+    success_url = "/users_tweets/"
+
+    
+
+
