@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from .models import Tweet
 from .forms import TweetForm
-from .mixins import FormUserNeededMixin
+from .mixins import FormUserNeededMixin, UserOwnerMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView, ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
 
@@ -73,12 +74,12 @@ class TweetCreateView(FormUserNeededMixin, CreateView):
     success_url = "/create_tweet/"
     
 # class based view to update a tweet
-class TweetUpdateView(UpdateView):
+class TweetUpdateView(LoginRequiredMixin,UserOwnerMixin, UpdateView):
     queryset = Tweet.objects.all()
     form_class = TweetForm
     template_name = 'all/update_tweet.html'
     success_url = "/users_tweets/"
 
-    
+# class based view to delete a tweet
 
 
