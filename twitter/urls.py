@@ -19,6 +19,7 @@ urlpatterns = [
     url('^users_tweets/', views.TweetListView.as_view(), name='usersTweets'),
     url('^create_tweet/', views.TweetCreateView.as_view(), name='create'),
     url(r'^(?P<pk>\d+)/update/$', views.TweetUpdateView.as_view(), name='editTweet'),
+    url(r'^(?P<pk>\d+)/delete/$', views.TweetDeleteView.as_view(), name='deleteTweet'),
         
 ]
 
