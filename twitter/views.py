@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Tweet
 from .forms import TweetForm
+from .mixins import FormUserNeededMixin
 from django.views.generic import DetailView, ListView, CreateView
 
 # Create your views here.
@@ -59,12 +60,9 @@ class TweetListView(ListView):
     template_name = 'all/tweet_list.html'
     queryset = Tweet.objects.all()
 
-class TweetCreateView(CreateView):
+
+class TweetCreateView(FormUserNeededMixin, CreateView):
     template_name = 'all/create_tweet.html'
     form_class = TweetForm
     success_url = "/create_tweet/"
     
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super(TweetCreateView, self).form_valid(form)
-
