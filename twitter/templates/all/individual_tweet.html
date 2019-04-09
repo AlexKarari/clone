@@ -2,12 +2,11 @@
 {% block title %}{{block.super}}{% endblock %}
 {% block content %}
 
-<p>{{ object.content }}</p>
-<br>
 {{ object.user }}
 <br>
-{{ object.timestamp }}
+{{ object.content }}
 <br>
-{{ object.timestamp|timesince }} ago
+{{ object.timestamp }} | {{ object.timestamp|timesince }} ago
+<br>
 
 {% endblock %}
