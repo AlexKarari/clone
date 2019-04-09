@@ -1,16 +1,22 @@
 {%extends 'base.html' %}
 {% block content %}
-
+{% include "all/search.html" %}
+<br>
 {% for object in object_list %}
+
 <div>
         <h5>{{ object.user }} </h5>
         <br>
         {{ object.content }}
         <br>
-        {{ object.timestamp }}
-        <br>
         {{ object.timestamp|timesince }} ago
         <br>
+        {% empty %}
+                {% if request.GET.q %}
+                <p>No tweets found</p>
+                {% else %}
+                <p>Yikes...seems to be no tweets yet</p>
+                {% endif %}
 </div>
 
 {% endfor %}

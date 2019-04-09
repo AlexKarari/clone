@@ -1,0 +1,12 @@
+{%extends 'base.html' %}
+{% block content %}
+
+<div>
+    <form method="GET" action="{% url 'usersTweets' %}">
+        <input type="text" name='q' placeholder='Search' value='{{ request.GET.q }}'/>
+        <input type="submit" value='search' />
+    </form>
+</div>
+
+
+{% endblock %}
