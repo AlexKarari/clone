@@ -1,18 +1,13 @@
-{%extends 'base.html' %}
 {% block content %}
 
-<div class="row">
-    <div class="col-sm-12 text-center">
-        <form class="form-inline" method="GET" action="{% url 'usersTweets' %}">
-            <div class="form-group">
-                <!-- <label for="q">Search</label> -->
-                <input class="form-control" type="text" name='q' placeholder='Search Xanders Twitter'  value='{{ request.GET.q }}'/>
-            </div>
-            <input type="submit" class="btn btn-default" value="Search">
-             
-        </form>
-    </div>
-</div>
+    <form class="navbar-form navbar-left" method="GET" action="{% url 'usersTweets' %}">
+        <div class="form-group">
+            <!-- <label for="q">Search</label> -->
+            <input class="form-control" type="text" name='q' placeholder='Search Xanders Twitter'
+                value='{{ request.GET.q }}' />
+        </div>
+        <input type="submit" class="btn btn-default" value="Search">
 
+    </form>
 
 {% endblock %}

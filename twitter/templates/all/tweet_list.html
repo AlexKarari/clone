@@ -4,7 +4,7 @@
 
 <div class="row">
         <div class="col-sm-8 col-sm-offset-">
-                {% include "all/search.html" %}
+               
                 <br>
                 {% for object in object_list %}
                 
@@ -20,6 +20,7 @@
                                         {{ object.user }} | {{ object.timestamp|timesince }} ago<br>
                                         {{ object.content }} | <a href="{% url 'singleTweet' object.id %}">View</a> <br>
                                 </div>
+                                <hr>
                         </div>
                         {% empty %}
                                 {% if request.GET.q %}
