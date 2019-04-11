@@ -3,36 +3,42 @@
 {% block content %}
 
 <div class="row">
-        <div class="col-sm-8 col-sm-offset-">
-               
+        <div class="col-sm-3 col-xs-12" style="background-color:lightgreen">
+                <h2>{{ request.user }}</h2>
+        </div>
+        <div class="col-sm-9">
+                {% if not request.GET.q %}
+                <div>
+                        {% include "all/form.html" with form=create_form action_url=create_url btn_title='Tweet' %}
+                </div>
+                {% endif %}
+                <hr/>
                 <br>
                 {% for object in object_list %}
-                
-                        <div class="media">
-                                <div class="media-left">
-                                        <a href="#">
-                                                {% if object.image %}
-                                                <img class="media-object" src="..." alt="...">
-                                                {% endif %}
-                                        </a>
-                                </div>
-                                <div class="media-body">
-                                        {{ object.user }} | {{ object.timestamp|timesince }} ago<br>
-                                        {{ object.content }} | <a href="{% url 'singleTweet' object.id %}">View</a> <br>
-                                </div>
-                                <hr>
+                <div class="media">
+                        <div class="media-left">
+                                <a href="#">
+                                        {% if object.image %}
+                                        <img class="media-object" src="..." alt="...">
+                                        {% endif %}
+                                </a>
                         </div>
-                        {% empty %}
-                                {% if request.GET.q %}
-                                <p>No tweets found</p>
-                                {% else %}
-                                <p>Yikes...seems to be no tweets yet</p>
-                                {% endif %}
+                        <div class="media-body">
+                                {{ object.user }} | {{ object.timestamp|timesince }} ago<br>
+                                {{ object.content }} | <a href="{% url 'singleTweet' object.id %}">View</a> <br>
+                        </div>
+                        <hr/>
+                </div>
+                {% empty %}
+                        {% if request.GET.q %}
+                        <p>No tweets found</p>
+                        {% else %}
+                        <p>Yikes...seems to be no tweets yet</p>
+                        {% endif %}
                 
                 {% endfor %}
 
         </div>
-
 </div>
 
 {% endblock %}

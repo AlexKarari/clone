@@ -2,7 +2,11 @@
 {% block title %}{{block.super}}{% endblock %}
 {% block content %}
 
-{% include "all/form.html" with form=form btn_title='Tweet' %}
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        {% include "all/form.html" with form=form btn_title='Tweet' %}
+    </div>
+</div>
 
 {% endblock %}
 

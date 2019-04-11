@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from twitter.views import TweetListView
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', TweetListView.as_view(), name='homepage'),
     url(r'', include('twitter.urls')),
     
 ]
+
